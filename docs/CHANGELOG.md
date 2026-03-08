@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- **analyze_stocks 并行化** — `analyzer_service.analyze_stocks()` 改为使用线程池并行分析多只股票，总耗时约 `ceil(N / max_workers) * 单只耗时`；并发数由 `MAX_WORKERS` 或参数 `max_workers` 控制，建议 2~5 以免触发 LLM API 限流。命令行/main 流程已通过 `pipeline.run()` 使用相同并发（`--workers` / `MAX_WORKERS`）。
+
 ## [3.4.10] - 2026-03-07
 
 ### Fixed
