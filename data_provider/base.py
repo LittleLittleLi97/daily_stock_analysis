@@ -410,8 +410,9 @@ class DataFetcherManager:
         # 创建所有数据源实例（优先级在各 Fetcher 的 __init__ 中确定）
         efinance = EfinanceFetcher()
         akshare = AkshareFetcher()
-        tushare = TushareFetcher()  # 会根据 Token 配置自动调整优先级
-        pytdx = PytdxFetcher()      # 通达信数据源（可配 PYTDX_HOST/PYTDX_PORT）
+        # 97 - 这俩速度太慢
+        # tushare = TushareFetcher()  # 会根据 Token 配置自动调整优先级
+        # pytdx = PytdxFetcher()      # 通达信数据源（可配 PYTDX_HOST/PYTDX_PORT）
         baostock = BaostockFetcher()
         yfinance = YfinanceFetcher()
 
@@ -419,8 +420,8 @@ class DataFetcherManager:
         self._fetchers = [
             efinance,
             akshare,
-            tushare,
-            pytdx,
+            # tushare,
+            # pytdx,
             baostock,
             yfinance,
         ]
