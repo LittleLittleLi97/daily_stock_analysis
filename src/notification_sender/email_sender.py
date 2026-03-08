@@ -45,6 +45,7 @@ SMTP_CONFIGS = {
     # 139邮箱
     "139.com": {"server": "smtp.139.com", "port": 465, "ssl": True},
 }
+Default_SMTP_Server = "smtp.qq.com"
 
 
 class EmailSender:
@@ -159,7 +160,7 @@ class EmailSender:
                 logger.info(f"自动识别邮箱类型: {domain} -> {smtp_server}:{smtp_port}")
             else:
                 # 未知邮箱，尝试通用配置
-                smtp_server = f"smtp.{domain}"
+                smtp_server = Default_SMTP_Server
                 smtp_port = 465
                 use_ssl = True
                 logger.warning(f"未知邮箱类型 {domain}，尝试通用配置: {smtp_server}:{smtp_port}")
@@ -229,7 +230,7 @@ class EmailSender:
                 smtp_server, smtp_port = smtp_config['server'], smtp_config['port']
                 use_ssl = smtp_config['ssl']
             else:
-                smtp_server, smtp_port = f"smtp.{domain}", 465
+                smtp_server, smtp_port = Default_SMTP_Server, 465
                 use_ssl = True
 
             if use_ssl:
